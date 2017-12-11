@@ -20,7 +20,7 @@ def getPMAverages(startTime,timesize,datastore):
     s1=0.0
     startIndex=bisect_left(datastore,startTime)
     endIndex=bisect_left(datastore,startTime+timesize)-1 #see note above
-    if startIndex==endIndex or datastore[startIndex][0]<startTime:
+    if startIndex>endIndex or datastore[startIndex][0]<startTime:
       return None
     for i in range(startIndex,endIndex):
       s0+=datastore[i][1]

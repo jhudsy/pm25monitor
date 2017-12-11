@@ -38,7 +38,7 @@ def makeChartData(startTime,timesize,datastore):
     if not a==None:
       data.append(a)
     startTime+=timesize
-  return data  
+  return data[:-1] #drop last datapoint in case it's incomplete  
 
 def makePGChart(startTime,timesize,datastore):
   data=makeChartData(startTime,timesize,datastore)

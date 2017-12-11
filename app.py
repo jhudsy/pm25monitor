@@ -1,7 +1,8 @@
 from serialWorker import SerialWorker
 import time,random #for testing only
-from util import makePGChart
+from util import makePGChart,makeChartData
 import flask
+import json
 from threading import Lock
 
 app=flask.Flask(__name__)
@@ -15,5 +16,16 @@ sw=SerialWorker(None,ds,lock)
 def minutes():
   chart=makePGChart(time.time()-24*60*60,60,ds)
   return chart.render_response()
+
+#currently a hack
+@app.route("/<length>/<interval>")
+def lenInt(length,interval):
+  chart=makePGChart(time.time()-int(length),int(interval),ds)
+  return chart.render_response()
+
+#currently a hack
+@app.route("/data/<length>/<interval>")
+def data(length,interval):
+  return flask.Response(json.dumps(makeChartData(time.time()-int(length),int(interval),ds)),mimetype='application/json')
   
 app.run(host='0.0.0.0',port=8080)

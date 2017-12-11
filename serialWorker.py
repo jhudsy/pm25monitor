@@ -29,7 +29,6 @@ class SerialWorker(Thread):
     cs=self.readInt()
     checksum=(pm25l+pm25h+pm10l+pm10h+i1+i2)%256
     if cs==checksum:
-      print [ float(pm25h*256+pm25l)/10,  float(pm10h*256+pm10l)/10 ]
       return [ float(pm25h*256+pm25l)/10,  float(pm10h*256+pm10l)/10 ]
     return None
 

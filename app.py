@@ -2,12 +2,12 @@ from serialWorker import SerialWorker
 import time,random #for testing only
 from util import makePGChart
 import flask
-import thread
+from threading import Lock
 
 app=flask.Flask(__name__)
 
 ds=[]
-lock=thread.Lock()
+lock=Lock()
 sw=SerialWorker(None,ds,lock)
 #ds=[[time.time()-24*60*60+x,random.random(),random.random()] for x in range(24*60*60)]
 

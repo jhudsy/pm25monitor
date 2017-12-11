@@ -1,4 +1,5 @@
 import serial,time
+from threading import Thread
 
 class serialWorker(Thread):
   def __init__(self,port,datastore,lock):

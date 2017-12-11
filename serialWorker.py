@@ -12,13 +12,14 @@ class SerialWorker(Thread):
     self.start()
 
   def readInt(self):
-    return int(self.s.read().encode('hex'),16)
+    i = int(self.s.read().encode('hex'),16)
+    return i
 
   def readPM25PM10(self):
     b=self.readInt()
     while b!=0xaa:
        b=self.readInt()
-    
+    self.readInt() #read dummy
     pm25l=self.readInt()
     pm25h=self.readInt()
     pm10l=self.readInt()

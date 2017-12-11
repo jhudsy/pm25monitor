@@ -16,3 +16,4 @@ def minutes():
   chart=makePGChart(time.time()-24*60*60,60,ds)
   return chart.render_response()
   
+app.run(host='0.0.0.0',port=8080)

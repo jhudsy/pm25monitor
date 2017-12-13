@@ -16,7 +16,7 @@ class DiskWriter(Thread)
         csvreader=csv.reader(csvfile)
         for row in csvreader:
                 self.datastore.append([long(row[0]),float(row[1]),float(row[2])])
-    self.lastwrite=len(self.datastore)-1
+    self.lastwrite=len(self.datastore)
     self.lock.release() 
     return self.datastore
 
@@ -24,10 +24,11 @@ class DiskWriter(Thread)
     while True:
             time.sleep(self.sleeptime)
             self.lock.acquire()
-            if len(self.datastore>=self.lastwrite+self.chunksize):
+            if len(self.datastore)>=self.lastwrite+self.chunksize:
                 with open(self.filename,"ab+") as f:
                     csvwriter=csv.writer(csvfile)
                     for d in self.datastore[lastwrite:]:
                             csvwriter.writerow(d)
+                self.laswrite=len(self.datastore)
             self.lock.release() 
               

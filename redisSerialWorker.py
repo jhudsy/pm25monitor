@@ -1,4 +1,5 @@
 import serial,time,redis
+import numpy as np
 
 """store readings every minute"""
 __SAMPLINGINTERVAL=60
@@ -37,19 +38,20 @@ def readPM25PM10():
 
 #####################################
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
-pubsub=redis.pubsub()
+pubsub=r.pubsub()
 
 lastwrite=round(time.time()) #time last reading was stored
 readings=[] #the readings
 while True:
-      t=self.readPM25PM10()
+      t=readPM25PM10()
       d=round(time.time())
       if t!=None:
+        print t
         readings.append(t)      
         r.set(__KEY,t)
         r.publish(__PM25,t[0])
         r.publish(__PM10,t[1])
-      if d-lastread>=__SAMPLINGINTERVAL:
+      if d-lastwrite>=__SAMPLINGINTERVAL:
               lastwrite=d
               toRedis=np.sum(readings,axis=0)/len(readings)
               r.zadd(__SSKEY,(d-__SAMPLINGINTERVAL)//2,toRedis.tolist())

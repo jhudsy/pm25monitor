@@ -1,0 +1,14 @@
+[Unit]
+Description=gunicorn
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/gunicorn --log-level error --worker-class eventlet -w 2 --bind 0.0.0.0:8000 wsgi
+WorkingDirectory=/home/pi/pm25monitor/web
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target

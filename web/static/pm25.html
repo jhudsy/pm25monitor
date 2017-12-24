@@ -19,6 +19,12 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
             function updateChart(){
+                            st=$('#datetimepicker1').data("DateTimePicker").date().unix();
+                            en=$('#datetimepicker2').data("DateTimePicker").date().unix();
+                            sen='sensor1ts'
+
+               $.post("/getData",{"start":st,"end":en,"sensor":sen},function(result){console.log(result)});
+              
 var data = google.visualization.arrayToDataTable([
           ['Year', 'Sales', 'Expenses'],
           ['2004',  1000,      400],
@@ -49,7 +55,6 @@ var data = google.visualization.arrayToDataTable([
                 $('#datetimepicker2').datetimepicker({defaultDate: moment(),maxDate: moment()});
                 $('#datetimepicker1').on("dp.hide",function(e)
                         {
-                            console.log($('#datetimepicker1').data("DateTimePicker").date().unix());
                             updateChart();
                         });
                 $('#datetimepicker1').on("dp.hide",function(e)

@@ -18,16 +18,17 @@ def updateBlink(channel,value):
     if value<__PM25GREEN:
       blinkt.set_pixel(__PM25PIXEL,0,255,0,0.05)
     elif value<__PM25YELLOW:
-      blinkt.set_pixel(__PM25PIXEL,255,0,255,0.05)
+      print channel,value
+      blinkt.set_pixel(__PM25PIXEL,255,60,0,0.3)
     else:
-      blinkt.set_pixel(__PM25PIXEL,255,0,0,0.05)
+      blinkt.set_pixel(__PM25PIXEL,255,0,0,0.5)
   else:
     if value<__PM10GREEN:
       blinkt.set_pixel(__PM10PIXEL,0,255,0,0.05)
     elif value<__PM25YELLOW:
-      blinkt.set_pixel(__PM10PIXEL,255,0,255,0.05)
+      blinkt.set_pixel(__PM10PIXEL,255,60,0,0.3)
     else:
-      blinkt.set_pixel(__PM10PIXEL,255,255,0,0.05)
+      blinkt.set_pixel(__PM10PIXEL,255,255,0,0.5)
   blinkt.show()
 
 r=redis.StrictRedis(host='localhost', port=6379,db=0)

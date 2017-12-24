@@ -18,10 +18,7 @@
 <!-- --------------------------------------------------------------------- -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(updateChart);
-
-
+            function updateChart(){
 var data = google.visualization.arrayToDataTable([
           ['Year', 'Sales', 'Expenses'],
           ['2004',  1000,      400],
@@ -35,17 +32,16 @@ var data = google.visualization.arrayToDataTable([
           curveType: 'function',
           legend: { position: 'bottom' }
         };
-
+              var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+              chart.draw(data, options);
+            }
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(updateChart);
 
 
     </script>
 <!-- --------------------------------------------------------------------- -->
         <script type="text/javascript">
-            function updateChart(){
-              var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-              chart.draw(data, options);
-
-            }
 
             $(document).ready(function() {
                 $('#datetimepicker1').datetimepicker({defaultDate:moment()-24*60*60*1000,maxDate:moment()});

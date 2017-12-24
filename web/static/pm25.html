@@ -2,17 +2,19 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/moment.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/locale/en-gb.js"></script> <!-- integrity="sha256-aTgx0CTTED3qZtyezqOlG3e04BkBaEzWDwNT1O4TGVo=" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/locale/en-gb.js" integrity="sha256-aTgx0CTTED3qZtyezqOlG3e04BkBaEzWDwNT1O4TGVo=" crossorigin="anonymous"></script> 
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> <!-- integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> 
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script><!-- integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script><!-- integrity="sha256-5YmaxAwMjIpMrVlK84Y/+NjCpKnFYa8bWWBbUHSBGfU=" crossorigin="anonymous"></script> -->
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"><!-- integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css"><!-- integrity="sha256-SMGbWcp5wJOVXYlZJyAXqoVWaE/vgFA5xfrH3i/jVw0=" crossorigin="anonymous" /> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+        <link href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 
 <body>
 <div class="container">
@@ -36,10 +38,15 @@
             </div>
         </div>
         <script type="text/javascript">
-            $(function () {
+            $(document).ready(function() {
                 $('#datetimepicker1').datetimepicker({defaultDate:moment()-24*60*60*1000,maxDate:moment()});
-                $('#datetimepicker1').val(moment()-24*60*60*1000)
+                $('#datetimepicker1').data("DateTimePicker").date(new Date(moment()-24*3600*1000))
                 $('#datetimepicker2').datetimepicker({defaultDate: moment(),maxDate: moment()});
+                $('#datetimepicker1').on("dp.hide",function(e)
+                        {
+                           console.log($('#datetimepicker1').data("DateTimePicker").date().unix());
+                        }
+                );
             });
         </script>
     </div>

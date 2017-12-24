@@ -21,7 +21,6 @@ def data():
   start=request.form['starttime']
   end=request.form['endtime']
   sensor=request.form['sensor']
-  print jsonify(r.zrangebyscore(sensor,int(start),int(end)))
-  return jsonify(r.zrangebyscore(sensor,int(start),int(end)))
+  return jsonify(r.zrangebyscore(sensor,int(start),int(end),withscores=True))
 
 application.run(host='0.0.0.0')

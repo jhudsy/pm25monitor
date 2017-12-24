@@ -11,8 +11,8 @@ __SSKEY="sensor1ts"
 """redis key for current reading"""
 __KEY="sensor1Current"
 """channels for pubsub"""
-__PM25="pm25"
-__PM10="pm10"
+__PM25="sensor1pm25"
+__PM10="sensor1pm10"
 
 def readInt():
     i = int(__serialport.read().encode('hex'),16)
@@ -46,7 +46,6 @@ while True:
       t=readPM25PM10()
       d=round(time.time())
       if t!=None:
-        print t
         readings.append(t)      
         r.set(__KEY,t)
         r.publish(__PM25,t[0])
@@ -54,6 +53,6 @@ while True:
       if d-lastwrite>=__SAMPLINGINTERVAL:
               lastwrite=d
               toRedis=np.sum(readings,axis=0)/len(readings)
-              r.zadd(__SSKEY,(d-__SAMPLINGINTERVAL)//2,toRedis.tolist())
+              r.zadd(__SSKEY,d-(__SAMPLINGINTERVAL)//2,toRedis.tolist())
               readings=[]
       time.sleep(1)

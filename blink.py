@@ -1,7 +1,7 @@
 import redis,blinkt
 
-__PM25='pm25'
-__PM10='pm10'
+__PM25='sensor1pm25'
+__PM10='sensor1pm10'
 
 """http://apps.who.int/iris/bitstream/10665/69477/1/WHO_SDE_PHE_OEH_06.02_eng.pdf"""
 

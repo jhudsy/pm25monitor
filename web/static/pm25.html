@@ -15,7 +15,55 @@
 
 
         <link href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+<!-- --------------------------------------------------------------------- -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(updateChart);
 
+
+var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
+        ]);
+
+      var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+
+
+    </script>
+<!-- --------------------------------------------------------------------- -->
+        <script type="text/javascript">
+            function updateChart(){
+              var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+              chart.draw(data, options);
+
+            }
+
+            $(document).ready(function() {
+                $('#datetimepicker1').datetimepicker({defaultDate:moment()-24*60*60*1000,maxDate:moment()});
+                $('#datetimepicker1').data("DateTimePicker").date(new Date(moment()-24*3600*1000))
+                $('#datetimepicker2').datetimepicker({defaultDate: moment(),maxDate: moment()});
+                $('#datetimepicker1').on("dp.hide",function(e)
+                        {
+                            console.log($('#datetimepicker1').data("DateTimePicker").date().unix());
+                            updateChart();
+                        });
+                $('#datetimepicker1').on("dp.hide",function(e)
+                        {
+                            updateChart();
+                        });
+            });
+        </script>
+
+<!-- --------------------------------------------------------------------- -->
 <body>
 <div class="container">
     <div class="row">
@@ -37,21 +85,9 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#datetimepicker1').datetimepicker({defaultDate:moment()-24*60*60*1000,maxDate:moment()});
-                $('#datetimepicker1').data("DateTimePicker").date(new Date(moment()-24*3600*1000))
-                $('#datetimepicker2').datetimepicker({defaultDate: moment(),maxDate: moment()});
-                $('#datetimepicker1').on("dp.hide",function(e)
-                        {
-                           console.log($('#datetimepicker1').data("DateTimePicker").date().unix());
-                        }
-                );
-            });
-        </script>
     </div>
 </div>
-
+  <div id="curve_chart" style="width: 900px; height: 500px"></div>
 </body>
 
 </html>

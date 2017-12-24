@@ -11,7 +11,7 @@ CORS(application)
 def display():
     return send_static_file('pm25.html')
 
-@application("/getData",methods=['POST','GET'])
+@application.route("/getData",methods=['POST','GET'])
 def data():
   start=request.form['starttime']
   end=request.form['endtime']

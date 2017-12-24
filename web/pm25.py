@@ -9,7 +9,7 @@ CORS(application)
 
 @application.route("/")
 def display():
-    return send_static_file('pm25.html')
+    return application.send_static_file('pm25.html')
 
 @application.route("/getData",methods=['POST','GET'])
 def data():

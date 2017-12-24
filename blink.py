@@ -6,7 +6,7 @@ __PM10='sensor1pm10'
 """http://apps.who.int/iris/bitstream/10665/69477/1/WHO_SDE_PHE_OEH_06.02_eng.pdf"""
 
 __PM25GREEN=10
-__PM25YELLOW=25
+__PM25YELLOW=18
 __PM10GREEN=20
 __PM10YELLOW=50
 

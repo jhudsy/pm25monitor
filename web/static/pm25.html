@@ -23,7 +23,11 @@
                             en=$('#datetimepicker2').data("DateTimePicker").date().unix();
                             sen='sensor1ts'
 
-               $.post("/getData",{"start":st,"end":en,"sensor":sen},function(result){console.log(result)});
+               console.log("ajax");
+               $.post({url:"/getData",
+                       dataType: 'json',
+                       data:{"starttime":st,"endtime":en,"sensor":sen},
+                       success:function(result){console.log(result);}});
               
 var data = google.visualization.arrayToDataTable([
           ['Year', 'Sales', 'Expenses'],

@@ -52,7 +52,8 @@ while True:
         r.publish(__PM10,t[1])
       if d-lastwrite>=__SAMPLINGINTERVAL:
               lastwrite=d
-              toRedis=np.sum(readings,axis=0)/len(readings)
-              r.zadd(__SSKEY,d-(__SAMPLINGINTERVAL)//2,toRedis.tolist())
+              toRedis=(np.sum(readings,axis=0)/len(readings)).tolist()
+              toRedis.append(int(d))
+              r.zadd(__SSKEY,int(d-(__SAMPLINGINTERVAL)//2),toRedis)
               readings=[]
       time.sleep(1)

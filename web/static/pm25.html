@@ -22,12 +22,10 @@
                             en=$('#datetimepicker2').data("DateTimePicker").date().unix();
                             sen='sensor1ts'
 
-               console.log("ajax");
                $.post({url:"/getData",
                        dataType: 'json',
                        data:{"starttime":st,"endtime":en,"sensor":sen},
                        success:function(result){
-                             console.log(result);
                              var data=[['Time','PM2.5','PM10']];
                              for (var i=0;i<result.length;i++){
                                   var time=new Date(result[i][1]*1000);

@@ -23,4 +23,4 @@ def data():
   sensor=request.form['sensor']
   return jsonify(r.zrangebyscore(sensor,int(start),int(end),withscores=True))
 
-application.run(host='0.0.0.0')
+#application.run(host='0.0.0.0')

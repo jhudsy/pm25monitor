@@ -1,0 +1,14 @@
+[Unit]
+Description=Redis serial monitor
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python /home/pi/pm25monitor/redisSerialWorker.py
+WorkingDirectory=/home/pi/pm25monitor
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target

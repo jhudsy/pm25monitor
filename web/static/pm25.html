@@ -39,7 +39,11 @@
                              var options={
                                  title: 'PM2.5 and PM10',
                                  curveType: 'function',
-                                 legend: { position: 'bottom' }
+                                 legend: { position: 'bottom' },
+                                 explorer: {
+                                 axis: 'horizontal',
+                                 keepInBounds: true
+                                 }
                              };
                              var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
                              chart.draw(data, options);

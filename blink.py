@@ -18,7 +18,6 @@ def updateBlink(channel,value):
     if value<__PM25GREEN:
       blinkt.set_pixel(__PM25PIXEL,0,255,0,0.05)
     elif value<__PM25YELLOW:
-      print channel,value
       blinkt.set_pixel(__PM25PIXEL,255,60,0,0.3)
     else:
       blinkt.set_pixel(__PM25PIXEL,255,0,0,0.5)

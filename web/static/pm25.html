@@ -62,7 +62,7 @@
                 $('#datetimepicker1').data("DateTimePicker").date(new Date(moment()-24*3600*1000))
                 $('#datetimepicker2').datetimepicker({defaultDate: moment(),maxDate: moment()});
                 $('#datetimepicker2').on("dp.show",function(e){
-                        $('#datetimepicker2').maxDate(moment());
+                        $('#datetimepicker2').data("DateTimePicker").maxDate(moment());
                 });
                 $('#datetimepicker1').on("dp.hide",function(e)
                         {

@@ -74,6 +74,14 @@
                         });
 
 //############################### start PM25/PM10 current readings
+                $.post({url:"/getCurrent",
+                       dataType: 'json',
+                       data:{"sensorCurrent":"sensor1Current"}, //NB
+                       success:function(result){
+                          $('#pm25').text(result[0]);
+                          $('#pm10').text(result[1]);
+                }});
+
                 setInterval(function(){
                    $.post({url:"/getCurrent",
                        dataType: 'json',

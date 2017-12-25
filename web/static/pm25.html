@@ -78,8 +78,18 @@
                        dataType: 'json',
                        data:{"sensorCurrent":"sensor1Current"}, //NB
                        success:function(result){
-                          $('#pm25').text(JSON.parse(result)[0]);
-                          $('#pm10').text(JSON.parse(result)[1]);
+                          var pm25=JSON.parse(result)[0]
+                          var pm10=JSON.parse(result)[0]
+                          $('#pm25').text(pm25);
+                          $('#pm10').text(pm10);
+
+                          //set text color based on level
+                          if (pm25>=10){$('#pm25').css('color','yellow');}
+                          else if (pm25>=18){$('#pm25').css('color','red');}
+                          else {$('#pm25').css('color','green');}
+                          if (pm10>=20){$('#pm10').css('color','yellow');}
+                          else if (pm10>=50){$('#pm10').css('color','red');}
+                          else {$('#pm10').css('color','green');}
                 }});
 
                 setInterval(function(){
@@ -87,8 +97,18 @@
                        dataType: 'json',
                        data:{"sensorCurrent":"sensor1Current"}, //NB
                        success:function(result){
-                          $('#pm25').text(JSON.parse(result)[0]);
-                          $('#pm10').text(JSON.parse(result)[1]);
+                          var pm25=JSON.parse(result)[0]
+                          var pm10=JSON.parse(result)[0]
+                          $('#pm25').text(pm25);
+                          $('#pm10').text(pm10);
+
+                          //set text color based on level
+                          if (pm25>=10){$('#pm25').css('color','yellow');}
+                          else if (pm25>=18){$('#pm25').css('color','red');}
+                          else {$('#pm25').css('color','green');}
+                          if (pm10>=20){$('#pm10').css('color','yellow');}
+                          else if (pm10>=50){$('#pm10').css('color','red');}
+                          else {$('#pm10').css('color','green');}
                        }});
                  },10000); //every 10 seconds
 

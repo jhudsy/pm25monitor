@@ -23,4 +23,8 @@ def data():
   sensor=request.form['sensor']
   return jsonify(r.zrangebyscore(sensor,int(start),int(end),withscores=True))
 
-#application.run(host='0.0.0.0')
+@application.route("/getCurrent",methods=['POST','GET'])
+def current():
+  return jsonify(r.get(request.form['sensorCurrent']))
+
+#aeplication.run(host='0.0.0.0')

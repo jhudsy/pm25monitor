@@ -72,12 +72,30 @@
                         {
                             updateChart();
                         });
+
+//############################### start PM25/PM10 current readings
+                setInterval(function(){
+                   $.post({url:"/getCurrent",
+                       dataType: 'json',
+                       data:{"sensorCurrent":"sensor1Current"}, //NB
+                       success:function(result){
+                          $('#pm25').text(result[0]);
+                          $('#pm10').text(result[1]);
+                       }});
+                 },10000); //every 10 seconds
+
             });
         </script>
 
 <!-- --------------------------------------------------------------------- -->
 <body>
 <div class="container">
+    <hr/>
+    <div class="row">
+      <div class="col-sm-4"> <b>PM2.5:</b> <span id="pm25"></span> </div>
+      <div class="col-sm-4"> <b>PM10:</b> <span id="pm10"></span> </div>
+    </div>
+    <hr/>
     <div class="row">
         <div class='col-sm-6'>
             <div class="form-group">

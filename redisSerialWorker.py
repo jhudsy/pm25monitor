@@ -33,7 +33,7 @@ def readPM25PM10():
     cs=readInt()
     checksum=(pm25l+pm25h+pm10l+pm10h+i1+i2)%256
     if cs==checksum:
-      return [ (pm25h*256+pm25l)/10,  (pm10h*256+pm10l)/10 ]
+      return [ (pm25h*256+pm25l)/10.0,  (pm10h*256+pm10l)/10.0 ]
     return None
 
 #####################################
@@ -52,7 +52,8 @@ while True:
         r.publish(__PM10,t[1])
       if d-lastwrite>=__SAMPLINGINTERVAL:
               lastwrite=d
-              toRedis=(np.sum(readings,axis=0)/len(readings)).tolist()
+              #toRedis=(np.sum(readings,axis=0)/len(readings)).tolist()
+              toRedis=map(lambda x: float(str(round(x,1))),(np.sum(readings,axis=0)/len(readings)).tolist())
               toRedis.append(int(d))
               r.zadd(__SSKEY,int(d-(__SAMPLINGINTERVAL)//2),toRedis)
               readings=[]

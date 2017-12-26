@@ -79,7 +79,7 @@
                        data:{"sensorCurrent":"sensor1Current"}, //NB
                        success:function(result){
                           var pm25=JSON.parse(result)[0]
-                          var pm10=JSON.parse(result)[0]
+                          var pm10=JSON.parse(result)[1]
                           $('#pm25').text(pm25);
                           $('#pm10').text(pm10);
 
